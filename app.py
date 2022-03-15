@@ -3,9 +3,8 @@ from crypt import methods
 import email
 import pwd
 import sqlite3
-from wtForms import Form
 from passlib.hash import sha256_crypt
-from flask import Flask,render_template,request,session,redirect,url_for
+from flask import Flask, flash,render_template,request,session,redirect,url_for
 app=Flask(__name__)#variabile globale di py stiamo passando al flask il main del programma
 import os.path
     
@@ -24,26 +23,18 @@ def home():
 def login():
     return render_template('login.html')
 
-class RegistrationForm(Form):
-    email=TextField('email')
-    pwd=PasswordField('pwd')
-
-@app.route('/registration', methods=('POST',))
+@app.route('/registration', methods=['POST','GET'] )
 def registration():
-    connection=sqlite3.connect('database.db')#connessione db
-    connection.row_factory=sqlite3.Row #organizzazione in righe
-    cur=connection.cursor()
-    form=RegistrationForm(request.form)
-    if request.method== "POST" :
-        email=form.email.data
-        pwd=sha256_crypt.encrypt((str(form.pwd.data)))
-        x=cur.execute()
+    if request.method == "POST" :
+        if request.form['email'] and request.form['pwd']:
+            connection=sqlite3.connect('database2.db')#connessione db
+            email=request.form['email']
+            pwd=request.form['pwd']
+            connection.execute("INSERT INTO user (email,pwd) VALUES( ? , ?)",(email,pwd))
+            connection.commit()
+            connection.close()
+            return redirect(url_for('login'))
+
     return render_template('registration.html')
 if __name__ == '__main__' :#per far partire il programma
     app.run(debug=True ,port=8080)
-
-
-
-if __name__ == '__main__' :#per far partire il programma
-    app.run(debug=True ,port=8080)
-
