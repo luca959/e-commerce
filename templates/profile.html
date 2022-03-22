@@ -24,21 +24,21 @@
  <h1 style="text-align: center;">Profilo</h1>
 
 <!-- Profilo-->  
-<div style="align-items: center;margin:15em;" >
-  <div class="card" style="width: 18rem; align-items: center;">
-    <div class="card-body" >
-      <h5 class="card-title">email: {{session['email']}}</h5>
-      <p class="card-text">Password: {{session['pwd']}}</p>
+<div style="display: flex; align-items: center; width: full;flex-direction: column;padding:2%">
+    <div class="card">
+      <div class="card-body" >
+        <h5 class="card-title">email: {{session['email']}}</h5>
+        <p class="card-text">Password: {{session['pwd']}}</p>
+      </div>
+      <div class="card-body">
+        <a href="#" class="card-link">Change email</a>
+        <a href="#" class="card-link">Change Password</a>
+      </div>
     </div>
-    <div class="card-body">
-      <a href="#" class="card-link">Change email</a>
-      <a href="#" class="card-link">Change Password</a>
-    </div>
+    <br>
+    <button type="button" class="btn btn-danger"><a href="{{url_for('logout')}}" >Log out</a></button>
   </div>
-  <br>
-  <button type="button" class="btn btn-danger"><a href="{{url_for('logout')}}" >Log out</a></button>
 </div>
-
 <!-- Profilo -->
 
     

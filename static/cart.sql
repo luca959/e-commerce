@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS cart;
 CREATE TABLE cart(
     title TEXT,
-    email TEXT
+    email TEXT,
+    quantity INT DEFAULT 1
 );
 
 DROP TABLE IF EXISTS item;

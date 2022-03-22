@@ -23,7 +23,7 @@
 
  <!-- NAV BAR --> 
  
- <h1 style="text-align: center;">Prodotti disponibili</h1>
+ <h1 style="text-align: center;">Carrello</h1>
 
 <!-- shop -->
 
@@ -39,8 +39,9 @@
           <div class="card-body">
             <input type="text" class="form-control-plaintext" readonly value="{{item.title }}" name="title">
             <textarea rows="4" cols="50" name="info" class="form-control-plaintext" readonly disabled >{{item.info }} </textarea>
+            <p>Quantita': {{item.quantity}}</p>
             <br>
-            <input type="submit" class="btn btn-danger" value="Delete">
+            <input type="submit" class="btn btn-danger" value="Delete All">
             </form>
           </div>
         </div>
